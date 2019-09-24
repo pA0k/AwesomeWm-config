@@ -34,7 +34,7 @@ my personal setup for [Awesome Wm](https://awesomewm.org/) , still needs improve
 
 ## Screenshots
 
-![full_screen](resources/screenshots/full.png)  
+![full_screen](resources/screenshots/2019.09.24-09.10.58.screenshot.png)  
 
 ## wishlist
 

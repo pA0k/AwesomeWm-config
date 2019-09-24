@@ -19,10 +19,10 @@ my personal setup for [Awesome Wm](https://awesomewm.org/) , still needs improve
 **Compositor**: compton
 
   
-**Font**: Industry Black , Samsung Sans , Time Won
+**Font**: Industry Black , Samsung Sans , Time Won , Roboto
 
   
-**Others**: notify-send , maim , nm-applet  , light-locker
+**Others**: notify-send , maim , nm-applet  , light-locker , redshift
 
 ## Installation
 

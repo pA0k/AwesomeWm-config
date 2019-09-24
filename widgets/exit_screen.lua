@@ -15,7 +15,7 @@ local screen_geometry = awful.screen.focused().geometry
 local alert_icon      = wibox.widget.imagebox(os.getenv("HOME") .. "/.config/awesome/resources/icons/others/yellow.png")
 
 
-local warning_text    = util.text("WARNING SYSTEM","Industry-Bold  30")
+local warning_text    = util.text("WARNING SYSTEM","Blender Pro bold  30")
 local msg_widget      = util.text("DO YOU WANT EXIT FROM THE CURRENT SESSION  ?","Industry-Bold  22")
 
 
@@ -33,7 +33,7 @@ end
 exit_screen = wibox({
   x             = 400,
   y             = screen_geometry.height/4, 
-  border_width  = 12, 
+  border_width  = 10, 
   border_color  = "#252e25", 
   ontop         = true, 
   visible       = false, 

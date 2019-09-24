@@ -11,7 +11,7 @@ local util          = require("utilities")
 -----------------------------------------------------------------------------------------------------------------------
 local BL_VALUE      = 'bash -c "xbacklight -get"'
 local BL_WIDGET     = util.bar()
-
+BL_WIDGET:fit(100,100)
 
 watch(BL_VALUE,1,function(widget, stdout, _, _, _)
     local brightness = string.match(stdout, '(%d+)')

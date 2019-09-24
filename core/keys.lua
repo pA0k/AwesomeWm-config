@@ -30,9 +30,6 @@ keys.globalkeys = gears.table.join(
               {description = "view previous", group = "tag"}),
     awful.key({ env.mod,           }, "Right",  awful.tag.viewnext,
               {description = "view next", group = "tag"}),
-    awful.key({ env.mod,           }, "Tab", awful.tag.history.restore,
-        {description = "go back", group = "tag"}),
-
     awful.key({ env.mod,           }, "u",
         function ()
             uc = awful.client.urgent.get()
@@ -53,10 +50,10 @@ keys.globalkeys = gears.table.join(
               {description = "quit awesome", group = "awesome"}),
     
     -- change focus client
-    awful.key({ env.mod,           }, "j",
+    awful.key({ env.mod,           }, "Tab",
               function () awful.client.focus.byidx( 1) end,
         {description = "focus next by index", group = "client"}),
-    awful.key({ env.mod,           }, "k",
+    awful.key({ env.mod,"Shift"    }, "Tab",
               function () awful.client.focus.byidx(-1) end,
         {description = "focus previous by index", group = "client"}),
         

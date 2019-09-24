@@ -9,13 +9,19 @@ theme.color 		= {
 	black_gray= "#363333",
 	dark 	  = "",
 	blue	  = "#0EC3B8",
-	gray      = "#404040",
+	gray      = "#5a5b5d",
 	yellow	  = "#C0B738",
 	red       = "#D60B17",
 	green	  = "#384d30",
 	green_dark= "#091113",
-	green_light="#C3FF10",
-	white	  = "#FFFFFF"
+	green_light	="#C3FF10",
+	orange		= "#f68633",
+	white	  	= "#FFFFFF"
+}
+-- wibar width
+theme.wibar   = {
+		top    = 40,
+		bottom = 35
 }
 
 
@@ -26,7 +32,7 @@ theme.fg_normal						= theme.color.white
 
 theme.bg_normal 					= theme.color.bg
 theme.border_normal					= theme.color.bg
-theme.border_focus					= theme.color.bg
+theme.border_focus					= theme.color.green
 theme.border_marked                 = theme.color.bg
 
 -- wibar
@@ -63,7 +69,7 @@ theme.bg_systray 					= theme.color.bg
 
 -- hotkey
 theme.hotkeys_label_bg				= theme.color.white
-theme.hotkeys_bg 					= theme.color.green
+theme.hotkeys_bg 					= theme.color.bg
 theme.hotkeys_fg 					= theme.color.text
 theme.hotkeys_border_width 			= 0
 theme.hotkeys_group_margin 			= 20
@@ -79,10 +85,21 @@ theme.notification_max_height       =  400
 theme.notification_margin			=  80
 theme.notification_padding 			=  100
 
+-- titlebar
+theme.titlebar_bg 					= theme.color.bg
+
 --Layout
+theme.layout_max  					= themes_path.."/icons/layouts/max.svg"
 theme.layout_floating  				= themes_path.."/icons/layouts/floating.svg"
+theme.layout_magnifier				= themes_path.."/icons/layouts/magnifier.svg"
+
+theme.layout_titeleft  				= themes_path.."/icons/layouts/tileleft.svg"
+theme.layout_titetop  				= themes_path.."/icons/layouts/tiletop.svg"
+theme.layout_tilebottom  			= themes_path.."/icons/layouts/tilebottom.svg"
+
 theme.layout_tile	  				= themes_path.."/icons/layouts/tile.svg"
-theme.layout_fairv  				= themes_path.."/icons/layouts/fair.svg"
+theme.layout_fairv	  				= themes_path.."/icons/layouts/fair.svg"
+theme.layout_spiral  				= themes_path.."/icons/layouts/spiral.svg"
 
 -- fullscreen
 theme.fullscreen_hide_border 		= true
@@ -90,14 +107,29 @@ theme.fullscreen_hide_border 		= true
 --  icon 
 theme.icons							=	{
 	alert 							= themes_path .. "/icons/others/yellow.png",
-	show_apps						= themes_path .. "/icons/apps.svg"
+	show_apps						= themes_path .. "/icons/apps.svg",
+	arrow_left						= themes_path .. "/icons/others/arrow_left.svg"
 }
 
 
--- battery
-theme.battery						={
-	charging	  					= themes_path.."/icons/battery/full.png",
-	full  							= themes_path.."/icons/battery/full.png"
+-- audio
+theme.audio 						= {
+	on								= themes_path .. "/icons/audio/on.svg",
+	mute							= themes_path .. "/icons/audio/mute.svg"
 }
+-- individual margins for panel widgets
+--------------------------------------------------------------------------------
+theme.wrapper = {
+	layoutbox   = { 12, 10, 6, 6 },
+	textclock   = { 10, 10, 0, 0 },
+	volume      = { 0, 0, 2, 5 },
+	backlight   = { 10, 10, 5, 5 },
+	network     = { 10, 10, 5, 5 },
+	battery     = { 8, 10, 7, 7 },
+	systray     = { 0, 1, 8, 8 },
+	taglist		= { 8 , 8 , 8 , 8},
+	tasklist    = { 10, 8, 8, 8 }
+}
+
 return theme
 

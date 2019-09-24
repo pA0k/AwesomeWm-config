@@ -14,5 +14,4 @@ end
 
 
 runOnce("nm-applet ")
---runOnce("compton -CGb")
-runOnce("light-locker")
+runOnce("compton -CGb")

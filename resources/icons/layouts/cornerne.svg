@@ -10,11 +10,11 @@
    height="48"
    width="48"
    version="1.1"
-   id="svg12"
-   sodipodi:docname="fair.svg"
+   id="svg8"
+   sodipodi:docname="cornerne.svg"
    inkscape:version="0.92.4 5da689c313, 2019-01-14">
   <metadata
-     id="metadata18">
+     id="metadata14">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -25,7 +25,7 @@
     </rdf:RDF>
   </metadata>
   <defs
-     id="defs16" />
+     id="defs12" />
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -37,34 +37,27 @@
      inkscape:pageshadow="2"
      inkscape:window-width="1344"
      inkscape:window-height="671"
-     id="namedview14"
+     id="namedview10"
      showgrid="false"
      inkscape:zoom="4.9166667"
-     inkscape:cx="-0.88636363"
+     inkscape:cx="-22.983051"
      inkscape:cy="24"
      inkscape:window-x="6"
      inkscape:window-y="41"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg12" />
+     inkscape:current-layer="svg8" />
   <g
      fill="#a0a0a0"
-     id="g10"
-     style="stroke:none;stroke-opacity:1;fill:#445b1f;fill-opacity:1">
-    <path
-       d="m0 48h20v-20h-20z"
-       id="path2"
-       style="stroke:none;stroke-opacity:1;fill:#445b1f;fill-opacity:1" />
-    <path
-       d="m28 48h20v-20h-20z"
-       id="path4"
-       style="stroke:none;stroke-opacity:1;fill:#445b1f;fill-opacity:1" />
+     transform="matrix(0 1 -1 0 48 0)"
+     id="g6"
+     style="fill:#445b1f;fill-opacity:1">
     <path
        d="m0 20h20v-20h-20z"
-       id="path6"
-       style="stroke:none;stroke-opacity:1;fill:#445b1f;fill-opacity:1" />
+       id="path2"
+       style="fill:#445b1f;fill-opacity:1" />
     <path
-       d="m28 20h20v-20h-20z"
-       id="path8"
-       style="stroke:none;stroke-opacity:1;fill:#445b1f;fill-opacity:1" />
+       d="m28 0v28h-28v20h28 20v-20-28zm6 10h8v24 4 4h-32v-8h24z"
+       id="path4"
+       style="fill:#445b1f;fill-opacity:1" />
   </g>
 </svg>

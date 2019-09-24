@@ -27,7 +27,7 @@ theme.wibar   = {
 
 theme.useless_gap                   = 3
 theme.border_width					= 0
-theme.font          				= "Industry-Light 10"
+theme.font          				= "Roboto 10 medium"
 theme.fg_normal						= theme.color.white
 
 theme.bg_normal 					= theme.color.bg

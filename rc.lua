@@ -53,8 +53,8 @@ local textclock = wibox.widget.textclock("%A %d :: %m (%B) :: %Y  %H:%M", 60)
 ------------------------------------------------------------------------------------
 local sysmon = {
    battery          = require("widgets.battery"),
-   -- backlight    = widg.backlight,
-   volume          = require("widgets.volume")
+   backlight        = require("widgets.backlight"),
+   volume           = require("widgets.volume")
 }
 
 local test = sysmon.volume()
@@ -124,8 +124,8 @@ awful.screen.connect_for_each_screen(function(s)
         },
         {
             layout = wibox.layout.align.horizontal,
+            env.wrapper(sysmon.backlight(),"battery"),
             env.wrapper(sysmon.battery(),"battery"),
-            separator,
             env.wrapper(sysmon.volume(),"volume")
         }
     }
@@ -144,6 +144,7 @@ awful.screen.connect_for_each_screen(function(s)
         {
             layout = wibox.layout.align.horizontal,
             textclock,
+            separator,
             env.wrapper(systray,"systray")
         }
     }

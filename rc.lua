@@ -7,6 +7,7 @@ local gears         =   require("gears")
 local wibox         =   require("wibox")
 local core          =   require("core")
 local util          =   require("utilities")
+local smartBorder   =   require("utilities.smart-border")
 local widg          =   require("widgets")
                         require("awful.autofocus")
 
@@ -15,14 +16,14 @@ local widg          =   require("widgets")
 ------------------------------------------------------------------------------------
 local env           =   require("environment")
 env:init()
---------        Layouts          
+--------        Layouts
 ------------------------------------------------------------------------------------
-local layout = require("core.layouts")
+local layout        =   core.layouts
 layout:init()
 
---------        keys          
+--------        keys
 ------------------------------------------------------------------------------------
-local keys         =    core.keys
+local keys          =    core.keys
 
 -- Taglist widget
 --------------------------------------------------------------------------------
@@ -57,12 +58,13 @@ local sysmon = {
    volume           = require("widgets.volume")
 }
 
-local test = sysmon.volume()
-
 -- systray
 -------------------------------------------------------------------------------------
 local systray       = wibox.widget.systray()
 
+-- systray
+-------------------------------------------------------------------------------------
+local profile       = require("widgets.profile")
 
 -- separator
 -------------------------------------------------------------------------------------
@@ -136,6 +138,7 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         {
             layout = wibox.layout.align.horizontal,
+            env.wrapper(profile(),"profile")
         },
         {
             layout = wibox.layout.align.horizontal,
@@ -151,42 +154,6 @@ awful.screen.connect_for_each_screen(function(s)
 
 end)
 
-
--- Add a titlebar if titlebars_enabled is set to true in the rules.
-client.connect_signal("request::titlebars", function(c)
-    -- buttons for the titlebar
-    local buttons = gears.table.join(
-        awful.button({ }, 1, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.move(c)
-        end),
-        awful.button({ }, 3, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.resize(c)
-        end)
-    )
-
-    awful.titlebar(c) : setup {
-        { -- Left
-            layout  = wibox.layout.fixed.horizontal
-        },
-        { -- Middle
-            layout  = wibox.layout.flex.horizontal
-        },
-        { -- Right
-            awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
-            layout = wibox.layout.fixed.horizontal()
-        },
-        layout = wibox.layout.align.horizontal
-    }
-end)
-
-
-
 -- shortened tasklist's name 
 client.connect_signal("property::name", function(c)
     local client_name = c.name
@@ -194,3 +161,27 @@ client.connect_signal("property::name", function(c)
        c.name = string.sub(client_name,1,20)
     end
 end)
+
+client.connect_signal("request::titlebars", function(c) smartBorder.set(c, true) end)
+client.connect_signal("property::size", smartBorder.set)
+
+client.connect_signal("mouse::enter", function(c)
+    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+      and awful.client.focus.filter(c) then
+      client.focus = c
+    end
+end)
+
+client.connect_signal("focus", function(c)
+    -- no border for maximized clients
+    if c.maximized_horizontal == true and c.maximized_vertical == true then
+      c.border_width = 0
+    elseif #awful.client.visible(mouse.screen) > 1 then
+      c.border_width = beautiful.border_width
+      c.border_color = beautiful.border_focus
+    else
+      c.border_width = 0
+    end
+end)
+
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)

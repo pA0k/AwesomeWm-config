@@ -1,6 +1,5 @@
-return {
-    battery     = require("widgets.battery"),
-    backlight   = require("widgets.backlight"),
-    exit_screen = require("widgets.exit_screen"),
-    audio       = require("widgets.volume")
-}
+return setmetatable ({},{
+    __index = function (table,key)
+    return require("widgets"..'.'..key)
+ end
+ })

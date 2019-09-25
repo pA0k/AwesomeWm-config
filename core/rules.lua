@@ -1,9 +1,7 @@
 local awful         =   require("awful")
 local beautiful     =   require("beautiful")
 local keys          =   require("core.keys")
-local env           =   require("environment")
 
-env:init()
 
 awful.rules.rules = {
     -- all clients
@@ -33,7 +31,7 @@ awful.rules.rules = {
 		},
     { 
       rule_any = { 
-        class = { "MPlayer"},
+        class = { "MPlayer","Mpv"},
         role  = { "AlarmWindow", "pop-up" },
         type  = { "dialog" }
       },

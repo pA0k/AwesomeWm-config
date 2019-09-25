@@ -2,7 +2,7 @@ local wibox       = require("wibox")
 
 local module      = {}
 
-local function new(textbox,font_name,shape_form)
+local function new(textbox,font_name)
     local button = wibox.widget {
         {
             {
@@ -13,7 +13,6 @@ local function new(textbox,font_name,shape_form)
             layout = wibox.layout.align.horizontal
         },
         bg = "#191F19",
-        shape = shape_form,
         widget = wibox.container.background
     }
 

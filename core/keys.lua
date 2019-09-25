@@ -1,18 +1,42 @@
 -----------------------------------------------------------------------------------------------------------------------
 --                                                  keys                                              --
------------------------------------------------------------------------------------------------------------------------
-
--- Load modules
 --------------------------------------------------------------------------------------
+-- Load modules
+
 local awful         = require("awful")
 local gears         = require("gears")
 local menubar       = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local smartBorder   = require("utilities.smart-border")
 local env           = require("environment")
-local exit_screen   = require("widgets.exit_screen")
-env:init()                                     
 
---variable
+env:init()
+
+
+function next_client_total(i)
+    local c = client.focus
+    if not c then return end
+    local cls = client.get()
+    local fcls = {}
+    -- Remove all non-normal clients
+    for _, c in ipairs(cls) do
+      if awful.client.focus.filter(c) or c == sel then
+        table.insert(fcls, c)
+      end
+    end
+    -- Find the focused client
+    for idx, c in ipairs(fcls) do
+      if c == sel then
+        -- Found it, focus and raise the "target"
+        local c = fcls[awful.util.cycle(#fcls, idx + i)]
+        client.focus = c
+        c:raise()
+        return
+      end
+    end
+end
+
+
 local keys = {}
 
 -- global keys
@@ -44,9 +68,7 @@ keys.globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ env.mod, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ env.mod, "Shift"   }, "q", function() exit_screen:show() end,
-              {description = "quit awesome", group = "awesome"}),
-    awful.key({ }, "XF86PowerOff", function() exit_screen:show() end,
+    awful.key({ env.mod, "Shift"   }, "q", function() awesome.quit() end,
               {description = "quit awesome", group = "awesome"}),
     
     -- change focus client
@@ -124,6 +146,9 @@ keys.clientkeys = gears.table.join(
     awful.key({ env.mod,           }, "f",
         function (c)
             c.fullscreen = not c.fullscreen
+            if c.fullscreen == false then
+                smartBorder.set(c, true)
+            end
             c:raise()
         end,{description = "toggle fullscreen", group = "client"}),
 
@@ -144,6 +169,9 @@ keys.clientkeys = gears.table.join(
     awful.key({ env.mod }, "m",
         function (c)
             c.maximized = not c.maximized
+            if c.maximized == false then
+                smartBorder.set(c, true)
+            end
             c:raise()
         end , {description = "(un)maximize horizontally", group = "client"}),
 

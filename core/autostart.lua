@@ -1,6 +1,3 @@
-
--- Load modules
------------------------------------------------------------------------------------------------------------------------
 local awful         =   require("awful")
 
 local function runOnce(cmd)
@@ -14,4 +11,5 @@ end
 
 
 runOnce("nm-applet ")
-runOnce("compton -CGb")
+--runOnce("compton -CGb")
+--runOnce("light-locker")

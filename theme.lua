@@ -24,10 +24,9 @@ theme.wibar   = {
 		bottom = 35
 }
 
-
-theme.useless_gap                   = 3
+theme.useless_gap                   = 6
 theme.border_width					= 0
-theme.font          				= "Roboto 10 medium"
+theme.font          				= "iosevka 10"
 theme.fg_normal						= theme.color.white
 
 theme.bg_normal 					= theme.color.bg
@@ -128,7 +127,8 @@ theme.wrapper = {
 	battery     = { 8, 10, 7, 7 },
 	systray     = { 0, 1, 8, 8 },
 	taglist		= { 8 , 8 , 8 , 8},
-	tasklist    = { 10, 8, 8, 8 }
+	tasklist    = { 10, 8, 8, 8 },
+	profile     = { 10, 8, 4, 4 }
 }
 
 return theme

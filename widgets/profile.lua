@@ -5,59 +5,50 @@ local wibox     	= require("wibox")
 local beautiful 	= require("beautiful")
 local gears		 	= require("gears")
 local read_cmd 		= require("utilities.read")
-local progressbar   = require("utilities.progressbar")
+local backg 		= require("utilities.background")
 
 
 -----------------------------------------------------------------------------------------------------------------------
-local volume = { mt = {} }
+local profile = { mt = {} }
 
 -----------------------------------------------------------------------------------------------------------------------
 local function default_style()
 	local style = {
-		width   = 60,
-		dmargin = { -20, 0, 0, 0 },
+		width   = 150,
+		dmargin = { 2, 0, 5, 5 },
 	}
 	return style
 end
 
 
-function volume.getValue()
-	local CMD_VL      	= "amixer -D pulse sget Master"
-	local stdout        = read_cmd.output(CMD_VL)
-	local volume 		= string.match(stdout, "(%d?%d?%d)%%")
-	return tonumber(string.format("% 3d", volume)) / 100
+function profile.getUserName()
+	local stdout        = read_cmd.output("whoami")
+	return tostring(string.upper(stdout))
 end
 
 -----------------------------------------------------------------------------------------------------------------------
-function volume.new()
-	
+function profile.new()
 	-- Initialize vars
 	--------------------------------------------------------------------------------
 	local style = default_style()
 	--------------------------------------------------------------------------------
-	local icon = wibox.widget.imagebox(beautiful.audio.on)
+	local name = profile.getUserName()
+	local text = backg("paranoid73","roboto 10 ",beautiful.color.green,beautiful.color.white)
 	--------------------------------------------------------------------------------
 	local layout = wibox.layout.fixed.horizontal()
-	layout:add(icon)
+    layout:add(text)
 	--------------------------------------------------------------------------------
-	local dash = progressbar.volume()
-
-	local t = gears.timer({ timeout = 2 })
-	t:connect_signal("timeout", function()
-		dash:set_value(volume.getValue())
-	end)
-	t:start()
-
+	local dash = wibox.widget.imagebox("/home/paranoid73/Pictures/logo/React-icon.svg")
 
 	layout:add(wibox.container.margin(dash, unpack(style.dmargin)))
 	--------------------------------------------------------------------------------
-	local widg = wibox.container.constraint(layout, "max", style.width)
+	local widg = wibox.container.constraint(layout, "exact", style.width)
 
 	return widg
 end
 
 -----------------------------------------------------------------------------------------------------------------------
-function volume.mt:__call(...)
-	return volume.new(...)
+function profile.mt:__call(...)
+	return profile.new(...)
 end
-return setmetatable(volume, volume.mt)
+return setmetatable(profile, profile.mt)

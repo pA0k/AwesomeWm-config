@@ -1,4 +1,5 @@
-return {
-    horizontal  = require("utilities.progressbar.horizontal"),
-    volume      = require("utilities.progressbar.volume")
-}
+return setmetatable ({},{
+    __index = function (table,key)
+    return require("utilities.progressbar"..'.'..key)
+ end
+ })

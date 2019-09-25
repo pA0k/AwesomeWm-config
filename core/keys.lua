@@ -6,9 +6,13 @@
 local awful         = require("awful")
 local gears         = require("gears")
 local menubar       = require("menubar")
+local widgets       = require("widgets")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local smartBorder   = require("utilities.smart-border")
 local env           = require("environment")
+
+
+
 
 env:init()
 
@@ -68,7 +72,7 @@ keys.globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ env.mod, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ env.mod, "Shift"   }, "q", function() awesome.quit() end,
+    awful.key({ env.mod, "Shift"   }, "q", function() widgets.exit_screen.show() end,
               {description = "quit awesome", group = "awesome"}),
     
     -- change focus client

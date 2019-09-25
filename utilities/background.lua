@@ -3,6 +3,7 @@
 local setmetatable  = setmetatable
 local wibox         = require("wibox")
 
+
 local module        = {}
 
 local function new(textbox,font_name,background,foreground)

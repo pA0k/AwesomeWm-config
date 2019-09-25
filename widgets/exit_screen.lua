@@ -38,7 +38,7 @@ exit_screen.widg = wibox({
 })
 
   -- BTN 1
-  local btn_1 = util.btn("YES - EXIT","Roboto 11")
+  local btn_1 = util.button("YES - EXIT","Roboto 11")
   btn_1:buttons(gears.table.join(
                  awful.button({ }, 1, function ()
                   exit_screen.exit()
@@ -46,7 +46,7 @@ exit_screen.widg = wibox({
   ))
 
   -- BTN 2
-  local btn_2 = util.btn("CANCEL","Roboto 11")
+  local btn_2 = util.button("CANCEL","Roboto 11")
   btn_2:buttons(gears.table.join(
                  awful.button({ }, 1, function ()
                   exit_screen.hide()

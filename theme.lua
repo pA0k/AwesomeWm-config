@@ -128,7 +128,7 @@ theme.wrapper = {
 	systray     = { 0, 1, 8, 8 },
 	taglist		= { 8 , 8 , 8 , 8},
 	tasklist    = { 10, 8, 8, 8 },
-	profile     = { 10, 8, 4, 4 }
+	profile     = { 4, 8, 5, 5 }
 }
 
 return theme

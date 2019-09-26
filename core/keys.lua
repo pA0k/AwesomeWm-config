@@ -1,45 +1,10 @@
------------------------------------------------------------------------------------------------------------------------
---                                                  keys                                              --
---------------------------------------------------------------------------------------
--- Load modules
-
+local env           = require("environment")
 local awful         = require("awful")
 local gears         = require("gears")
 local menubar       = require("menubar")
 local widgets       = require("widgets")
 local hotkeys_popup = require("awful.hotkeys_popup")
-local smartBorder   = require("utilities.smart-border")
-local env           = require("environment")
-
-
-
-
 env:init()
-
-
-function next_client_total(i)
-    local c = client.focus
-    if not c then return end
-    local cls = client.get()
-    local fcls = {}
-    -- Remove all non-normal clients
-    for _, c in ipairs(cls) do
-      if awful.client.focus.filter(c) or c == sel then
-        table.insert(fcls, c)
-      end
-    end
-    -- Find the focused client
-    for idx, c in ipairs(fcls) do
-      if c == sel then
-        -- Found it, focus and raise the "target"
-        local c = fcls[awful.util.cycle(#fcls, idx + i)]
-        client.focus = c
-        c:raise()
-        return
-      end
-    end
-end
-
 
 local keys = {}
 
@@ -150,9 +115,6 @@ keys.clientkeys = gears.table.join(
     awful.key({ env.mod,           }, "f",
         function (c)
             c.fullscreen = not c.fullscreen
-            if c.fullscreen == false then
-                smartBorder.set(c, true)
-            end
             c:raise()
         end,{description = "toggle fullscreen", group = "client"}),
 
@@ -173,9 +135,6 @@ keys.clientkeys = gears.table.join(
     awful.key({ env.mod }, "m",
         function (c)
             c.maximized = not c.maximized
-            if c.maximized == false then
-                smartBorder.set(c, true)
-            end
             c:raise()
         end , {description = "(un)maximize horizontally", group = "client"}),
 
@@ -184,8 +143,8 @@ keys.clientkeys = gears.table.join(
         {description = "toggle keep on top", group = "client"}),
     
     -- kill client    
-    awful.key({ env.mod  }, "c", 
-        function (c) 
+    awful.key({ env.mod  }, "c",
+        function (c)
             c:kill() 
         end,{description = "close", group = "client"})
 )

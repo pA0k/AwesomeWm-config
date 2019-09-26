@@ -2,7 +2,7 @@
 ------------------------------------------------------------------------------------
 local setmetatable  = setmetatable
 local wibox         = require("wibox")
-
+local util          = require("utilities")
 
 local module        = {}
 
@@ -18,6 +18,7 @@ local function new(textbox,font_name,background,foreground)
         },
         bg = background,
         fg = foreground,
+        shape = util.shape.rectangle.first_style,
         widget = wibox.container.background
     }
     return wid

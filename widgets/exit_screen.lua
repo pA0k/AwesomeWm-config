@@ -19,34 +19,36 @@ function exit_screen.show()
   exit_screen.widg.visible = true
 end
 
-local height_exitscreen      = screen[mouse.screen].geometry.height/4
-local width_exitscreen       = screen[mouse.screen].geometry.width/4
+local height_exitscreen      = tonumber(screen[mouse.screen].geometry.height/2.8)
+local width_exitscreen       = tonumber(screen[mouse.screen].geometry.width/2.5)
+local positionx              = tonumber((screen[mouse.screen].geometry.width - width_exitscreen)/2)
+local positiony              = tonumber((screen[mouse.screen].geometry.height - height_exitscreen)/2)
 
-
-  -- Create the widget
+-- Create the widget
 exit_screen.widg = wibox({
-    x             = (screen[mouse.screen].geometry.width - width_exitscreen)/2 ,
-    y             = (screen[mouse.screen].geometry.height - height_exitscreen)/2 ,
-    border_width  = 10,
+    x             = positionx,
+    y             =  positiony,
+    border_width  = 15,
     border_color  = beautiful.color.bg,
     ontop         = true,
     visible       = hide,
     type          = "dock",
     height        = height_exitscreen,
     width         = width_exitscreen,
-    bg            = beautiful.color.black
+    bg            = beautiful.color.black,
+    shape         = util.shape.rectangle.first_style
 })
 
   -- BTN 1
-  local btn_1 = util.button("YES - EXIT","Roboto 11")
+  local btn_1 = util.button("YES - EXIT","Roboto 11 Bold")
   btn_1:buttons(gears.table.join(
                  awful.button({ }, 1, function ()
-                  exit_screen.exit()
+                  exit_screen.quit()
                  end)
   ))
 
   -- BTN 2
-  local btn_2 = util.button("CANCEL","Roboto 11")
+  local btn_2 = util.button("CANCEL","Roboto 11 Bold")
   btn_2:buttons(gears.table.join(
                  awful.button({ }, 1, function ()
                   exit_screen.hide()
@@ -55,8 +57,8 @@ exit_screen.widg = wibox({
 
 
 local alert_icon      = wibox.widget.imagebox(beautiful.icons.alert)
-local warning_text    = util.text("WARNING SYSTEM","Roboto 10")
-local msg_widget      = util.text("DO YOU WANT EXIT FROM THE CURRENT SESSION  ?","Roboto 10")
+local warning_text    = util.text("WARNING SYSTEM","Blender Pro bold  40")
+local msg_widget      = util.text("DO YOU WANT EXIT FROM THE CURRENT SESSION  ?","Industry-Bold  22")
 
 exit_screen.widg:setup {
     {
@@ -66,16 +68,23 @@ exit_screen.widg:setup {
           warning_text ,
           layout = wibox.layout.align.horizontal,
         },
+        top =20,
+        left=15,
+        bottom = 0,
         widget = wibox.container.margin
-        },
-        fg = beautiful.color.white,
-        widget = wibox.container.background
+      },
+      fg = beautiful.color.white,
+      widget = wibox.container.background
     },
     {
       {
         msg_widget,
         layout = wibox.layout.align.horizontal
       },
+      top = 10,
+      right = 10,
+      left = 10,
+      bottom = 10,
       widget = wibox.container.margin
     },
     {
@@ -85,6 +94,10 @@ exit_screen.widg:setup {
         expand = "none",
         layout = wibox.layout.align.horizontal
       },
+      top = 20,
+      right = 10,
+      left = 10,
+      bottom = 20,
       widget = wibox.container.margin
     },
     layout = wibox.layout.flex.vertical

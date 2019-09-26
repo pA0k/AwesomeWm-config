@@ -53,4 +53,3 @@ awful.rules.rules = {
       },
     }
 }
-  

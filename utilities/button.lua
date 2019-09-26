@@ -1,4 +1,6 @@
 local wibox       = require("wibox")
+local beautiful   = require("beautiful")
+local util        = require("utilities")
 
 local module      = {}
 
@@ -12,26 +14,28 @@ local function new(textbox,font_name)
             },
             layout = wibox.layout.align.horizontal
         },
-        bg = "#191F19",
+        bg = beautiful.color.bg,
+        shape = util.shape.rectangle.first_style,
         widget = wibox.container.background
     }
 
     -- change color
     button:connect_signal("mouse::enter", function()
-        button.bg  = "#D60B17"
+        button.bg  = beautiful.color.green
+        button.fg  = beautiful.color.black
         local w = mouse.current_wibox
         old_cursor, old_wibox = w.cursor, w
         w.cursor = "hand1"
       end)
       
     button:connect_signal("mouse::leave", function()
-        button.bg  = "#191F19"
+        button.bg  = beautiful.color.bg
         if old_wibox then
             old_wibox.cursor = old_cursor
             old_wibox = nil
         end
     end)
-    
+
     return button
 end
 

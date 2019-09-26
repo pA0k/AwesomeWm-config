@@ -7,7 +7,6 @@ local gears         =   require("gears")
 local wibox         =   require("wibox")
 local core          =   require("core")
 local util          =   require("utilities")
-local smartBorder   =   require("utilities.smart-border")
 local widg          =   require("widgets")
                         require("awful.autofocus")
 
@@ -16,24 +15,30 @@ local widg          =   require("widgets")
 ------------------------------------------------------------------------------------
 local env           =   require("environment")
 env:init()
---------        Layouts
-------------------------------------------------------------------------------------
+require("core.rules")
+
+---------------------------------------------
+--------        Layouts         -------------
+---------------------------------------------
 local layout        =   core.layouts
 layout:init()
-
---------        keys
-------------------------------------------------------------------------------------
+---------------------------------------------
+--------        keys    --------------------
+---------------------------------------------
 local keys          =    core.keys
 
--- Taglist widget
---------------------------------------------------------------------------------
+---------------------------------------------
+-- Taglist widget           -----------------
+---------------------------------------------
 local taglist_buttons = awful.util.table.join(
 	awful.button({         }, 1, function(t) t:view_only() end),
 	awful.button({         }, 2, awful.tag.viewtoggle)
 )
 
---------        Tasklis
-------------------------------------------------------------------------------------
+---------------------------------------------
+--------        Tasklis             ---------
+---------------------------------------------
+
 local tasklist_buttons = gears.table.join(
                      awful.button({ }, 1, function (c)
                                               if c == client.focus then
@@ -46,16 +51,18 @@ local tasklist_buttons = gears.table.join(
                                                   )
                                               end
                                           end))
--- Textclock
-------------------------------------------------------------------------------------
+-------------------------------------------
+------- Textclock           ---------------
+-------------------------------------------
 local textclock = wibox.widget.textclock("%A %d :: %m (%B) :: %Y  %H:%M", 60)
 
--- sysmon
-------------------------------------------------------------------------------------
+---------------------------------------------
+---------           sysmon          ---------
+---------------------------------------------
 local sysmon = {
-   battery          = require("widgets.battery"),
-   backlight        = require("widgets.backlight"),
-   volume           = require("widgets.volume")
+   battery          = widg.battery,
+   backlight        = widg.backlight,
+   volume           = widg.volume
 }
 
 -- systray
@@ -64,7 +71,7 @@ local systray       = wibox.widget.systray()
 
 -- systray
 -------------------------------------------------------------------------------------
-local profile       = require("widgets.profile")
+local profile       = widg.profile
 
 -- separator
 -------------------------------------------------------------------------------------
@@ -82,35 +89,30 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
-    
     -- Each screen has its own tag table.
     awful.tag(env.taglist, s, awful.layout.layouts[1])
-    
+
     --taglist 
     s.mytaglist = awful.widget.taglist{
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons,
-        style   = {
-            shape = custom_shape
-        }
+        buttons = taglist_buttons
     }
-    
-    -- tasklist
+    ----------------------
+    ---- tasklist       --
+    ----------------------
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
-        style    = {
-            shape  = custom_shape,
-        },
         layout   = {
             spacing = 10,
             layout  = wibox.layout.flex.horizontal
         },
     }
-
-    -- bottom wibar
+    -------------------------
+    -- bottom wibar       ---
+    -------------------------
     s.wibar_top    = awful.wibar({ position = "top", screen = s, height =  beautiful.wibar.top })
     s.wibar_top:setup
     {
@@ -162,26 +164,58 @@ client.connect_signal("property::name", function(c)
     end
 end)
 
-client.connect_signal("request::titlebars", function(c) smartBorder.set(c, true) end)
-client.connect_signal("property::size", smartBorder.set)
+-- Signal function to execute when a new client appears.
+client.connect_signal("manage", function (c)
+    if awesome.startup
+      and not c.size_hints.user_position
+      and not c.size_hints.program_position then
+        -- Prevent clients from being unreachable after screen count changes.
+        awful.placement.no_offscreen(c)
+    end
+end)
 
+
+-- Add a titlebar if titlebars_enabled is set to true in the rules.
+client.connect_signal("request::titlebars", function(c)
+    -- buttons for the titlebar
+    local buttons = gears.table.join(
+        awful.button({ }, 1, function()
+            c:emit_signal("request::activate", "titlebar", {raise = true})
+            awful.mouse.client.move(c)
+        end),
+        awful.button({ }, 3, function()
+            c:emit_signal("request::activate", "titlebar", {raise = true})
+            awful.mouse.client.resize(c)
+        end)
+    )
+
+    awful.titlebar(c) : setup {
+        { -- Left
+            awful.titlebar.widget.iconwidget(c),
+            buttons = buttons,
+            layout  = wibox.layout.fixed.horizontal
+        },
+        { -- Middle
+            { -- Title
+                align  = "center",
+                widget = awful.titlebar.widget.titlewidget(c)
+            },
+            buttons = buttons,
+            layout  = wibox.layout.flex.horizontal
+        },
+        { -- Right
+            awful.titlebar.widget.floatingbutton (c),
+            awful.titlebar.widget.maximizedbutton(c),
+            awful.titlebar.widget.stickybutton   (c),
+            awful.titlebar.widget.ontopbutton    (c),
+            awful.titlebar.widget.closebutton    (c),
+            layout = wibox.layout.fixed.horizontal()
+        },
+        layout = wibox.layout.align.horizontal
+    }
+end)
+
+-- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
-    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-      and awful.client.focus.filter(c) then
-      client.focus = c
-    end
+    c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
-
-client.connect_signal("focus", function(c)
-    -- no border for maximized clients
-    if c.maximized_horizontal == true and c.maximized_vertical == true then
-      c.border_width = 0
-    elseif #awful.client.visible(mouse.screen) > 1 then
-      c.border_width = beautiful.border_width
-      c.border_color = beautiful.border_focus
-    else
-      c.border_width = 0
-    end
-end)
-
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)

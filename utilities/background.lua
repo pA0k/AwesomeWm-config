@@ -18,7 +18,7 @@ local function new(textbox,font_name,background,foreground)
         },
         bg = background,
         fg = foreground,
-        shape = util.shape.rectangle.first_style,
+        shape = util.shape.rectangle.second_style,
         widget = wibox.container.background
     }
     return wid

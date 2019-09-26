@@ -36,7 +36,7 @@ exit_screen.widg = wibox({
     height        = height_exitscreen,
     width         = width_exitscreen,
     bg            = beautiful.color.black,
-    shape         = util.shape.rectangle.first_style
+    shape         = util.shape.rectangle.second_style
 })
 
   -- BTN 1
@@ -69,7 +69,7 @@ exit_screen.widg:setup {
           layout = wibox.layout.align.horizontal,
         },
         top =20,
-        left=15,
+        left=35,
         bottom = 0,
         widget = wibox.container.margin
       },
@@ -96,7 +96,7 @@ exit_screen.widg:setup {
       },
       top = 20,
       right = 10,
-      left = 10,
+      left = 35,
       bottom = 20,
       widget = wibox.container.margin
     },

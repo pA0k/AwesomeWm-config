@@ -39,6 +39,8 @@ keys.globalkeys = gears.table.join(
               {description = "reload awesome", group = "awesome"}),
     awful.key({ env.mod, "Shift"   }, "q", function() widgets.exit_screen.show() end,
               {description = "quit awesome", group = "awesome"}),
+     awful.key({  }, "XF86PowerOff", function() widgets.exit_screen.show() end,
+              {description = "quit awesome", group = "awesome"}),
     
     -- change focus client
     awful.key({ env.mod,           }, "Tab",

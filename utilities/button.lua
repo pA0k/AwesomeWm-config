@@ -15,7 +15,7 @@ local function new(textbox,font_name)
             layout = wibox.layout.align.horizontal
         },
         bg = beautiful.color.bg,
-        shape = util.shape.rectangle.first_style,
+        shape = util.shape.rectangle.second_style,
         widget = wibox.container.background
     }
 

@@ -4,8 +4,7 @@ local awful         = require("awful")
 local wibox     	= require("wibox")
 local beautiful 	= require("beautiful")
 local gears		 	= require("gears")
-local read_cmd 		= require("utilities.read")
-local backg 		= require("utilities.background")
+local util 			= require("utilities")
 
 
 -----------------------------------------------------------------------------------------------------------------------
@@ -22,7 +21,7 @@ end
 
 
 function profile.getUserName()
-	local stdout        = read_cmd.output("whoami")
+	local stdout        = util.read.output("whoami")
 	return tostring(string.upper(stdout))
 end
 
@@ -33,7 +32,7 @@ function profile.new()
 	local style = default_style()
 	--------------------------------------------------------------------------------
 	local name = profile.getUserName()
-	local text = backg("paranoid73","roboto 10 ",beautiful.color.green,beautiful.color.white)
+	local text = util.background("PARANOID73","roboto Bold 10",beautiful.color.orange,beautiful.color.black)
 	--------------------------------------------------------------------------------
 	local layout = wibox.layout.fixed.horizontal()
     layout:add(text)

@@ -1,12 +1,54 @@
 local env           = require("environment")
 local awful         = require("awful")
 local gears         = require("gears")
+local beautiful     = require("beautiful")
 local menubar       = require("menubar")
 local widgets       = require("widgets")
 local hotkeys_popup = require("awful.hotkeys_popup")
 env:init()
 
 local keys = {}
+
+
+function keys.resize_dwim(c, direction)
+    if awful.layout.get(mouse.screen) == awful.layout.suit.floating or (c and c.floating) then
+        if direction == "up" then
+            c:relative_move(  0,  0, 0, -10)
+        elseif direction == "down" then
+            c:relative_move(  0,  0, 0,  10)
+        elseif direction == "left" then
+            c:relative_move(  0,  0, -10, 0)
+        elseif direction == "right" then
+            c:relative_move(  0,  0,  10, 0)
+        end
+    else
+        if direction == "up" then
+            awful.client.incwfact(-0.05)
+        elseif direction == "down" then
+            awful.client.incwfact( 0.05)
+        elseif direction == "left" then
+            awful.tag.incmwfact(-0.05)
+        elseif direction == "right" then
+            awful.tag.incmwfact( 0.05)
+        end
+    end
+end
+
+
+-- Move client to screen edge, respecting the screen workarea
+function keys.move_to_edge(c, direction)
+    local workarea = awful.screen.focused().workarea
+    if direction == "up" then
+        c:geometry({ nil, y = workarea.y + beautiful.useless_gap * 2, nil, nil })
+    elseif direction == "down" then 
+        c:geometry({ nil, y = workarea.height + workarea.y - c:geometry().height - beautiful.useless_gap * 2 - beautiful.border_width * 2, nil, nil })
+    elseif direction == "left" then 
+        c:geometry({ x = workarea.x + beautiful.useless_gap * 2, nil, nil, nil })
+    elseif direction == "right" then 
+        c:geometry({ x = workarea.width + workarea.x - c:geometry().width - beautiful.useless_gap * 2 - beautiful.border_width * 2, nil, nil, nil })
+    end
+end
+
 
 -- global keys
 --------------------------------------------------------------------------------------
@@ -32,6 +74,20 @@ keys.globalkeys = gears.table.join(
         end,
         {description = "jump to urgent client", group = "client"}),
 
+    -- Resize focused client or layout factor
+    -- (Arrow keys)
+    awful.key({ env.mod, "Control" }, "Down", function (c)
+        keys.resize_dwim(client.focus, "down")
+    end),
+    awful.key({ env.mod, "Control" }, "Up", function (c)
+        keys.resize_dwim(client.focus, "up")
+    end),
+    awful.key({ env.mod, "Control" }, "Left", function (c)
+        keys.resize_dwim(client.focus, "left")
+    end),
+    awful.key({ env.mod, "Control" }, "Right", function (c)
+        keys.resize_dwim(client.focus, "right")
+    end),
     -- Standard program
     awful.key({ env.mod,           }, "Return", function () awful.spawn(env.term) end,
               {description = "open a terminal", group = "launcher"}),
@@ -109,6 +165,19 @@ keys.globalkeys = gears.table.join(
 )
 
 keys.clientkeys = gears.table.join(
+    -- Move to edge or swap by direction
+    awful.key({ env.mod, "Shift" }, "Down", function (c)
+        keys.move_to_edge(c, "down")
+    end),
+    awful.key({ env.mod, "Shift" }, "Up", function (c)
+        keys.move_to_edge(c, "up")
+    end),
+    awful.key({ env.mod, "Shift" }, "Left", function (c)
+        keys.move_to_edge(c, "left")
+    end),
+    awful.key({ env.mod, "Shift" }, "Right", function (c)
+        keys.move_to_edge(c, "right")
+    end),
     -- sticky client
     awful.key({ env.mod,           }, "s",      function (c) c.sticky = not c.sticky  end,
             {description = "sticky client " , group = "client"}),

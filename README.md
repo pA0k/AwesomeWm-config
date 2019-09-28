@@ -5,11 +5,13 @@ my personal setup for [Awesome Wm](https://awesomewm.org/) , inspired from the [
 
 ## Requirements
   
-**Terminal**: [urxvt](https://wiki.archlinux.fr/urxvt)
-
-**File manager**: thunar , ranger  
-
-**Compositor**: compton
+| Dependency | Description                                                                                                         |
+|------------|---------------------------------------------------------------------------------------------------------------------|
+| awesome    | framework window manager for X.                                                            |
+| redshift   | Redshift adjusts the color temperature of your screen according to your location.          |
+| urxvt       | terminal                                    |
+| maim       | maim (make image) takes screenshots of your desktop.                                       |
+| compton    | Compton is a standalone compositor for Xorg, suitable for use with window managers that do not provide compositing. |
 
 **Font**: Industry Black , Samsung Sans , Time Won , Roboto
   

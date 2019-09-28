@@ -31,10 +31,10 @@ my personal setup for [Awesome Wm](https://awesomewm.org/) , still needs improve
      git clone https://github.com/paranoid73/AwesomeWm-config.git ~/.config/awesome --recursive
 
 ## Note:
-          In order to prevent power key from shutting down the system, 
-          edited the file /etc/systemd/logind.conf
-          uncommented #HandlePowerKey=poweroff line and changed it to
-          HandlePowerKey=ignore
+     In order to prevent power key from shutting down the system, 
+     edited the file /etc/systemd/logind.conf
+     uncommented #HandlePowerKey=poweroff line and changed it to
+     HandlePowerKey=ignore
 
 ## Screenshots
 

@@ -1,5 +1,3 @@
---------        LIBRARY
-------------------------------------------------------------------------------------
 local setmetatable  = setmetatable
 local gears         = require("gears")
 local wibox         = require("wibox")

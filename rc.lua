@@ -1,14 +1,16 @@
+pcall(require, "luarocks.loader")
 
--- Load modules
------------------------------------------------------------------------------------------------------------------------
+-- Standard awesome library
 local awful         =   require("awful")
-local beautiful     =   require("beautiful")
 local gears         =   require("gears")
+                        require("awful.autofocus")
+-- Widget and layout library
 local wibox         =   require("wibox")
+local beautiful     =   require("beautiful")
+-- Custom library
 local core          =   require("core")
 local util          =   require("utilities")
 local widg          =   require("widgets")
-                        require("awful.autofocus")
 
 
 --------        Environmen
@@ -17,28 +19,20 @@ local env           =   require("environment")
 env:init()
 require("core.rules")
 
----------------------------------------------
---------        Layouts         -------------
----------------------------------------------
+-- Layouts
 local layout        =   core.layouts
 layout:init()
----------------------------------------------
---------        keys    --------------------
----------------------------------------------
+
+-- keys
 local keys          =    core.keys
 
----------------------------------------------
--- Taglist widget           -----------------
----------------------------------------------
+-- Taglist widget 
 local taglist_buttons = awful.util.table.join(
 	awful.button({         }, 1, function(t) t:view_only() end),
 	awful.button({         }, 2, awful.tag.viewtoggle)
 )
 
----------------------------------------------
---------        Tasklis             ---------
----------------------------------------------
-
+--  Tasklis
 local tasklist_buttons = gears.table.join(
                      awful.button({ }, 1, function (c)
                                               if c == client.focus then
@@ -51,14 +45,11 @@ local tasklist_buttons = gears.table.join(
                                                   )
                                               end
                                           end))
--------------------------------------------
-------- Textclock           ---------------
--------------------------------------------
+--  Textclock
 local textclock = wibox.widget.textclock("%A %d :: %m (%B) :: %Y  %H:%M", 60)
 
----------------------------------------------
----------           sysmon          ---------
----------------------------------------------
+
+-- sysmon
 local sysmon = {
    battery          = widg.battery,
    backlight        = widg.backlight,
@@ -66,19 +57,15 @@ local sysmon = {
 }
 
 -- systray
--------------------------------------------------------------------------------------
 local systray       = wibox.widget.systray()
 
 -- systray
--------------------------------------------------------------------------------------
 local profile       = widg.profile
 
 -- separator
--------------------------------------------------------------------------------------
 local separator     = util.separator.pad(1)
 
 -- Screen setup
------------------------------------------------------------------------------------------------------------------------
 awful.screen.connect_for_each_screen(function(s)
     -- wallpaper
     env.set_wallpaper(s)
@@ -98,9 +85,7 @@ awful.screen.connect_for_each_screen(function(s)
         filter  = awful.widget.taglist.filter.all,
         buttons = taglist_buttons
     }
-    ----------------------
-    ---- tasklist       --
-    ----------------------
+    ---- tasklist
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
@@ -159,8 +144,8 @@ end)
 -- shortened tasklist's name 
 client.connect_signal("property::name", function(c)
     local client_name = c.name
-    if  string.len(client_name) > 30  then
-       c.name = string.sub(client_name,1,20)
+    if  string.len(client_name) > 35  then
+       c.name = string.sub(client_name,1,35)
     end
 end)
 
@@ -191,16 +176,9 @@ client.connect_signal("request::titlebars", function(c)
 
     awful.titlebar(c) : setup {
         { -- Left
-            awful.titlebar.widget.iconwidget(c),
-            buttons = buttons,
             layout  = wibox.layout.fixed.horizontal
         },
         { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
-            buttons = buttons,
             layout  = wibox.layout.flex.horizontal
         },
         { -- Right

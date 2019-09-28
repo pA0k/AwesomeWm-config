@@ -34,7 +34,7 @@ function table_.check(t, s)
 end
 
 -- simple function for counting the size of a table
-function table_.tableLength(T)
+function table_.Length(T)
 	local count = 0
 	for _ in pairs(T) do count = count + 1 end
 	return count

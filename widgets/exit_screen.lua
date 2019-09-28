@@ -18,17 +18,6 @@ end
 function exit_screen.show()
     exit_screen.widg.visible = true
     -- run keygrabber
-    awful.keygrabber.run(function(mod, key, event)
-      if event == "release" then return end
-      -- key
-      if  key == 'Escape' or key == 'q' or key == 'e' then 
-        exit_screen.hide()
-        awful.keygrabber.stop()
-      elseif key == 'y'         then exit_screen.quit()
-        exit_screen.quit()
-        awful.keygrabber.stop()
-      end
-  end)
 
 end
 

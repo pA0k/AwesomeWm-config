@@ -11,9 +11,10 @@ local volume = { mt = {} }
 
 -----------------------------------------------------------------------------------------------------------------------
 function volume.getValue()
-    local stdout        = util.read.output("xbacklight -get")
-    local brightness 	= string.match(stdout, '(%d+)')
-	return tonumber(brightness)/100
+	-- get current brightness value
+	local stdout        = util.read.output("cat /sys/class/backlight/intel_backlight/brightness")
+	-- maximuze value is 937 
+	return tonumber(string.match(stdout, '(%d+)'))/937
 end
 
 -----------------------------------------------------------------------------------------------------------------------

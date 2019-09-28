@@ -46,7 +46,7 @@ my personal setup for [Awesome Wm](https://awesomewm.org/) , still needs improve
 
 - [ ] customize notification
 
-- [ ] titlebar
+- [ ] customize titlebar
 
 - [ ] customize tasklist  
 

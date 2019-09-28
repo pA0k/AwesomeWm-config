@@ -12,8 +12,8 @@ local volume = { mt = {} }
 -----------------------------------------------------------------------------------------------------------------------
 function volume.getValue()
     local stdout        = util.read.output("xbacklight -get")
-    local brightness = string.match(stdout, '(%d+)')
-	return tonumber(brightness/100)
+    local brightness 	= string.match(stdout, '(%d+)')
+	return tonumber(brightness)/100
 end
 
 -----------------------------------------------------------------------------------------------------------------------

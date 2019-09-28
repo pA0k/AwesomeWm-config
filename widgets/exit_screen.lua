@@ -4,9 +4,9 @@ local wibox       = require("wibox")
 local gears       = require("gears")
 local util        = require("utilities")
 
-
 local exit_screen     = { }
 
+-- functions
 function exit_screen.quit()
     awesome.quit()
 end
@@ -16,13 +16,26 @@ function exit_screen.hide()
 end
 
 function exit_screen.show()
-  exit_screen.widg.visible = true
+    exit_screen.widg.visible = true
+    -- run keygrabber
+    awful.keygrabber.run(function(mod, key, event)
+      if event == "release" then return end
+      -- key
+      if  key == 'Escape' or key == 'q' or key == 'e' then 
+        exit_screen.hide()
+        awful.keygrabber.stop()
+      elseif key == 'y'         then exit_screen.quit()
+        exit_screen.quit()
+        awful.keygrabber.stop()
+      end
+  end)
+
 end
 
-local height_exitscreen      = tonumber(screen[mouse.screen].geometry.height/2.8)
-local width_exitscreen       = tonumber(screen[mouse.screen].geometry.width/2.5)
-local positionx              = tonumber((screen[mouse.screen].geometry.width - width_exitscreen)/2)
-local positiony              = tonumber((screen[mouse.screen].geometry.height - height_exitscreen)/2)
+local height_exitscreen      = screen[mouse.screen].geometry.height/2.8
+local width_exitscreen       = screen[mouse.screen].geometry.width/2.5
+local positionx              = (screen[mouse.screen].geometry.width - width_exitscreen)/2
+local positiony              = (screen[mouse.screen].geometry.height - height_exitscreen)/2
 
 -- Create the widget
 exit_screen.widg = wibox({

@@ -35,7 +35,7 @@ awful.rules.rules = {
         role  = { "AlarmWindow", "pop-up" },
         type  = { "dialog" }
       },
-      properties = { floating = true , border_width = 0 } 
+      properties = { floating = true , border_width = 0 , titlebars_enabled = false } 
     },
     -- Jetbrains splash screen fix
 		{

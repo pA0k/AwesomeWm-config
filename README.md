@@ -1,6 +1,5 @@
-
 ## Introduction  
-my personal setup for [Awesome Wm](https://awesomewm.org/) , inspired from the [Red Flat Awesome WM config](https://github.com/worron/awesome-config) . This configuration is compatible with awesome WM 4.
+[Awesome Wm](https://awesomewm.org/) configuration  , inspired from the [Red Flat Awesome WM config](https://github.com/worron/awesome-config) . This configuration is compatible with awesome WM 4.
 
 
 ## Requirements
@@ -12,10 +11,10 @@ my personal setup for [Awesome Wm](https://awesomewm.org/) , inspired from the [
 | urxvt       | terminal                                    |
 | maim       | maim (make image) takes screenshots of your desktop.                                       |
 | compton    | Compton is a standalone compositor for Xorg, suitable for use with window managers that do not provide compositing. |
-
-**Font**: Industry Black , Samsung Sans , Time Won , Roboto
-  
-**Others**: notify-send , maim , nm-applet  , light-locker , redshift
+| fonts    | Industry Black , Samsung Sans , Time Won , Roboto |
+| light-locker    | to lock screen |
+|nm-applet     | if you use network-manager  |
+|notify-send     | for notifications  |
 
 ## Installation
 
@@ -29,24 +28,29 @@ my personal setup for [Awesome Wm](https://awesomewm.org/) , inspired from the [
 
 ## Screenshots
 
-![full_screen](resources/screenshots/2019.09.24-09.10.58.screenshot.png)  
+![full_screen](resources/screenshots/2019.09.29-07.58.41.screenshot.png)  
 
 #### Keyboard
+
 + `ctrl + MOD4 + r` - Reload config
-+ `shift + MOD4 + q` - EXIT
++ `shift + MOD4 + q` - Exit 
 + `MOD4 + F1` - show help
-+ `MOD4 + enter` - open a terminal
 + `MOD4 + enter` - open a terminal
 + `MOD4 + c`     - Close client
 + `MOD4 + control + space` - Toggle floating client
 + `MOD4 + [1-0]` - View tag 
-+ `MOD4 + shift + [1-0]` - Move focused client to tag
++ `MOD4 + Shift + [1-0]` - Move focused client to tag
 + `MOD4 + f` - Toggle fullscreen
-+ `MOD4 + m` - Toggle maximize
++ `MOD4 + m` - (un)maximize horizontally
++ `MOD4 + Shift +m` - (un)maximize vertically
 + `MOD4 + n` - Minimize
 + `MOD4 + shift + n` - Restore minimized
 + `MOD4 + u` - Jump to urgent client 
 + `MOD4 + p` - Show menubar 
++ `MOD4 + t` - toggle keep on top
++ `MOD4 + s` - toggle sticky client
++ `Print` - take screenshot
++ `MOD4 + Print` - to select area and screenshot
 
 ## wishlist
 
@@ -60,6 +64,8 @@ my personal setup for [Awesome Wm](https://awesomewm.org/) , inspired from the [
 
 - [ ] change layout of help
 
-## License
-licensed under the [MIT license](https://opensource.org/licenses/MIT.
+## Want to help?
+
+contribute some code, or improve documentation ? always open
+
 

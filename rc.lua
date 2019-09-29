@@ -116,6 +116,7 @@ client.connect_signal("property::name", function(c)
     if  string.len(client_name) > 35  then
        c.name = string.sub(client_name,1,35)
     end
+    
 end)
 
 -- Signal function to execute when a new client appears.

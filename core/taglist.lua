@@ -4,6 +4,9 @@ local gears         =   require("gears")
 -- Widget and layout library
 local wibox         =   require("wibox")
 
+-- custom library
+local util        = require("utilities")
+
 local taglist      = { mt = {} }
 
 
@@ -18,7 +21,10 @@ function taglist.new(s)
     local widget = awful.widget.taglist{
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
+        buttons = taglist_buttons,
+        style   = {
+            shape = util.shape.rectangle.first_style
+        },
     }
     return widget
 end

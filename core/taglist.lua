@@ -1,0 +1,30 @@
+-- Standard awesome library
+local awful         =   require("awful")
+local gears         =   require("gears")
+-- Widget and layout library
+local wibox         =   require("wibox")
+
+local taglist      = { mt = {} }
+
+
+--  Tasklis button
+local taglist_buttons = awful.util.table.join(
+	awful.button({         }, 1, function(t) t:view_only() end),
+	awful.button({         }, 2, awful.tag.viewtoggle)
+)
+
+-- taglist
+function taglist.new(s)
+    local widget = awful.widget.taglist{
+        screen  = s,
+        filter  = awful.widget.taglist.filter.all,
+        buttons = taglist_buttons
+    }
+    return widget
+end
+
+function taglist.mt:__call(...)
+	return taglist.new(...)
+end
+
+return setmetatable(taglist, taglist.mt)

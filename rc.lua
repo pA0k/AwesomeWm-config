@@ -26,25 +26,6 @@ layout:init()
 -- keys
 local keys          =    core.keys
 
--- Taglist widget 
-local taglist_buttons = awful.util.table.join(
-	awful.button({         }, 1, function(t) t:view_only() end),
-	awful.button({         }, 2, awful.tag.viewtoggle)
-)
-
---  Tasklis
-local tasklist_buttons = gears.table.join(
-                     awful.button({ }, 1, function (c)
-                                              if c == client.focus then
-                                                  c.minimized = true
-                                              else
-                                                  c:emit_signal(
-                                                      "request::activate",
-                                                      "tasklist",
-                                                      {raise = true}
-                                                  )
-                                              end
-                                          end))
 --  Textclock
 local textclock = wibox.widget.textclock("%A %d :: %m (%B) :: %Y  %H:%M", 60)
 
@@ -80,21 +61,9 @@ awful.screen.connect_for_each_screen(function(s)
     awful.tag(env.taglist, s, awful.layout.layouts[1])
 
     --taglist 
-    s.mytaglist = awful.widget.taglist{
-        screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
-    }
+    s.mytaglist     = core.taglist(s)
     ---- tasklist
-    s.mytasklist = awful.widget.tasklist {
-        screen  = s,
-        filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons,
-        layout   = {
-            spacing = 10,
-            layout  = wibox.layout.flex.horizontal
-        },
-    }
+    s.mytasklist    = core.tasklist(s)
     -------------------------
     -- bottom wibar       ---
     -------------------------

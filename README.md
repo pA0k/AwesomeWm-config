@@ -1,5 +1,5 @@
 ## Introduction  
-[Awesome Wm](https://awesomewm.org/) configuration  , inspired from the [Red Flat Awesome WM config](https://github.com/worron/awesome-config) . This configuration is compatible with awesome WM 4.
+[Awesome Wm](https://awesomewm.org/) configuration  , inspired [Everfree-TEC-design](https://www.behance.net/gallery/79573713/Everfree-TEC-design) . This configuration is compatible with awesome WM 4.
 
 
 ## Requirements
@@ -60,12 +60,12 @@
 
 - [ ] customize titlebar
 
-- [ ] customize tasklist  
+- [ ] tasklist's icon list  
 
-- [ ] change layout of help
 
 ## Want to help?
 
-contribute some code, or improve documentation ? always open
+contribute some code, or improve documentation ? always open .
+This config could be even better with your help.
 
 

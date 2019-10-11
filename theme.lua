@@ -5,7 +5,7 @@ theme.wallpaper     = themes_path .. "/wallpaper/OR4EJM0.jpg"
 
 theme.color 		= {
 	bg 		  = "#252e25",
-	black     = "#040404",
+	black     = "#161616",
 	black_gray= "#363333",
 	dark 	  = "",
 	blue	  = "#0EC3B8",

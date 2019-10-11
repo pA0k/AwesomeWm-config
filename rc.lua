@@ -7,6 +7,9 @@ local gears         =   require("gears")
 -- Widget and layout library
 local wibox         =   require("wibox")
 local beautiful     =   require("beautiful")
+-- notification library
+local naughty       =   require("naughty")
+
 -- Custom library
 local core          =   require("core")
 local util          =   require("utilities")

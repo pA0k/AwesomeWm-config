@@ -7,7 +7,7 @@ local module        = {}
 local function new(text,font_name)
     return wibox.widget{
         markup = text,
-        font   = font_name or "Time Won 9",
+        font   = font_name or "Time Won 9" ,
         align  = 'center',
         valign = 'center',
         widget = wibox.widget.textbox

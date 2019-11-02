@@ -28,6 +28,16 @@ function volume.getValue()
 	return tonumber(string.format("% 3d", volume)) / 100
 end
 
+------------------------------------------------------------------------------------------------------------------
+function volume.increase()
+	local stdout = read_cmd.output("amixser set Master 10+")
+end
+
+------------------------------------------------------------------------------------------------------------------
+function volume.decrease()
+	local stdout = read_cmd.output("amixser set Master 10-")
+end
+
 -----------------------------------------------------------------------------------------------------------------------
 function volume.new()
 	
@@ -47,12 +57,11 @@ function volume.new()
 		dash:set_value(volume.getValue())
 	end)
 	t:start()
-
-
+	--------------------------------------------------------------------------------
 	layout:add(wibox.container.margin(dash, unpack(style.dmargin)))
 	--------------------------------------------------------------------------------
 	local widg = wibox.container.constraint(layout, "max", style.width)
-
+	
 	return widg
 end
 

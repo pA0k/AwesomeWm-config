@@ -5,6 +5,9 @@ local beautiful     = require("beautiful")
 local menubar       = require("menubar")
 local widgets       = require("widgets")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local smartBorders  =   require("widgets.smart-borders")
+
+
 env:init()
 
 local keys = {}
@@ -49,6 +52,11 @@ function keys.move_to_edge(c, direction)
     end
 end
 
+-- 
+function keys.decrease_size(c)
+    local workarea = awful.screen.focused().workarea
+    c:geometry({ nil,  nil, 4 , 2 })
+end
 
 -- global keys
 --------------------------------------------------------------------------------------
@@ -88,6 +96,11 @@ keys.globalkeys = gears.table.join(
     awful.key({ env.mod, "Control" }, "Right", function (c)
         keys.resize_dwim(client.focus, "right")
     end),
+    -- decrease size client
+    awful.key({ env.mod }, "q", function (c)
+        keys.decrease_size(client.focus)
+    end),
+
     -- Standard program
     awful.key({ env.mod,           }, "Return", function () awful.spawn(env.term) end,
               {description = "open a terminal", group = "launcher"}),
@@ -100,7 +113,9 @@ keys.globalkeys = gears.table.join(
     
     -- change focus client
     awful.key({ env.mod,           }, "Tab",
-              function () awful.client.focus.byidx( 1) end,
+              function () 
+                awful.client.focus.byidx( 1) 
+             end,
         {description = "focus next by index", group = "client"}),
     awful.key({ env.mod,"Shift"    }, "Tab",
               function () awful.client.focus.byidx(-1) end,
@@ -186,6 +201,9 @@ keys.clientkeys = gears.table.join(
     awful.key({ env.mod,           }, "f",
         function (c)
             c.fullscreen = not c.fullscreen
+            if c.fullscreen == false then
+                smartBorders.set(c, true)
+            end
             c:raise()
         end,{description = "toggle fullscreen", group = "client"}),
 
@@ -206,6 +224,9 @@ keys.clientkeys = gears.table.join(
     awful.key({ env.mod }, "m",
         function (c)
             c.maximized = not c.maximized
+            if c.maximized == false then
+                smartBorders.set(c, true)
+            end
             c:raise()
         end , {description = "(un)maximize horizontally", group = "client"}),
 

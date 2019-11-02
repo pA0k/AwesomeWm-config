@@ -14,6 +14,8 @@ local naughty       =   require("naughty")
 local core          =   require("core")
 local util          =   require("utilities")
 local widg          =   require("widgets")
+local smartBorders  =   require("widgets.smart-borders")
+
 
 
 --------        Environmen
@@ -30,7 +32,7 @@ layout:init()
 local keys          =    core.keys
 
 --  Textclock
-local textclock = wibox.widget.textclock("%A %d :: %m (%B) :: %Y  %H:%M", 60)
+local textclock = wibox.widget.textclock("%A %d :: (#%m %B) :: %Y  %H:%M", 60)
 
 
 -- sysmon
@@ -170,3 +172,7 @@ end)
 client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
+
+
+client.connect_signal("request::titlebars", function(c) smartBorders.set(c, true) end)
+client.connect_signal("property::size", smartBorders.set)

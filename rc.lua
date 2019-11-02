@@ -14,7 +14,7 @@ local naughty       =   require("naughty")
 local core          =   require("core")
 local util          =   require("utilities")
 local widg          =   require("widgets")
-local smartBorders  =   require("widgets.smart-borders")
+
 
 
 
@@ -134,45 +134,11 @@ client.connect_signal("manage", function (c)
     end
 end)
 
-
--- Add a titlebar if titlebars_enabled is set to true in the rules.
-client.connect_signal("request::titlebars", function(c)
-    -- buttons for the titlebar
-    local buttons = gears.table.join(
-        awful.button({ }, 1, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.move(c)
-        end),
-        awful.button({ }, 3, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.resize(c)
-        end)
-    )
-
-    awful.titlebar(c) : setup {
-        { -- Left
-            layout  = wibox.layout.fixed.horizontal
-        },
-        { -- Middle
-            layout  = wibox.layout.flex.horizontal
-        },
-        { -- Right
-            awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
-            layout = wibox.layout.fixed.horizontal()
-        },
-        layout = wibox.layout.align.horizontal
-    }
-end)
-
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
 
 
-client.connect_signal("request::titlebars", function(c) smartBorders.set(c, true) end)
-client.connect_signal("property::size", smartBorders.set)
+client.connect_signal("request::titlebars", function(c) widg.smartborders.set(c, true) end)
+client.connect_signal("property::size", widg.smartborders.set)

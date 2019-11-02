@@ -13,7 +13,7 @@ local STRING_OFFSET = 2
 local ARROW_WEIGHT = 5
 local ARROW_WIDTH = 50
 local SMART_GAP = 0
-local COLOR = gears.color("#2b303b")
+local COLOR = gears.color("#091113")
 
 if HIDPI then
   GUTTER = 20

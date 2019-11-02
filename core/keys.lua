@@ -5,13 +5,32 @@ local beautiful     = require("beautiful")
 local menubar       = require("menubar")
 local widgets       = require("widgets")
 local hotkeys_popup = require("awful.hotkeys_popup")
-local smartBorders  =   require("widgets.smart-borders")
 
 
 env:init()
 
 local keys = {}
 
+
+local filter_current = function()
+    filter.currenttags(c, screen)
+	if c.screen ~= screen then return false end
+	if c.sticky then return true end
+
+	local tags = screen.tags
+
+	for _, t in ipairs(tags) do
+		if t.selected then
+			local ctags = c:tags()
+
+			for _, v in ipairs(ctags) do
+				if v == t then return true end
+			end
+		end
+	end
+
+	return false
+end
 
 function keys.resize_dwim(c, direction)
     if awful.layout.get(mouse.screen) == awful.layout.suit.floating or (c and c.floating) then
@@ -110,7 +129,19 @@ keys.globalkeys = gears.table.join(
               {description = "quit awesome", group = "awesome"}),
      awful.key({  }, "XF86PowerOff", function() widgets.exit_screen.show() end,
               {description = "quit awesome", group = "awesome"}),
-    
+    -- appswitcher
+    awful.key({ env.mod,           }, "a",
+        function () 
+            switcher:init()
+        end,
+    {description = "focus next by index", group = "client"}),
+
+    awful.key({ env.mod,           }, "a",
+        function () 
+            switcher:hide()
+        end,
+    {description = "focus next by index", group = "client"}),
+
     -- change focus client
     awful.key({ env.mod,           }, "Tab",
               function () 
@@ -202,7 +233,7 @@ keys.clientkeys = gears.table.join(
         function (c)
             c.fullscreen = not c.fullscreen
             if c.fullscreen == false then
-                smartBorders.set(c, true)
+                widgets.smartborders.set(c, true)
             end
             c:raise()
         end,{description = "toggle fullscreen", group = "client"}),
@@ -225,7 +256,7 @@ keys.clientkeys = gears.table.join(
         function (c)
             c.maximized = not c.maximized
             if c.maximized == false then
-                smartBorders.set(c, true)
+                widgets.smartborders.set(c, true)
             end
             c:raise()
         end , {description = "(un)maximize horizontally", group = "client"}),

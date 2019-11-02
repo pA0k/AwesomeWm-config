@@ -1,5 +1,5 @@
 ## Introduction  
-[Awesome Wm](https://awesomewm.org/) configuration  , inspired [Everfree-TEC-design](https://www.behance.net/gallery/79573713/Everfree-TEC-design) . This configuration is compatible with awesome WM 4.
+[Awesome Wm](https://awesomewm.org/) configuration  , inspired [Everfree-TEC-design](https://www.behance.net/gallery/79573713/Everfree-TEC-design) . This configuration is compatible with awesome WM 4. 
 
 
 ## Requirements
@@ -57,8 +57,6 @@
 - [x]  exit screen
 
 - [ ] customize notification
-
-- [ ] customize titlebar
 
 - [ ] tasklist's icon list  
 

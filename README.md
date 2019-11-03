@@ -1,3 +1,15 @@
+<p align="center">Awesome wm military style</p>
+
+<p align="center">
+  <a href="https://lbesson.mit-license.org/"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License"></a>
+
+ <a href="https://github.com/paranoid73/AwesomeWm-config/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="commit"></a>
+
+ <a href="https://github.com/paranoid73/"><img src="https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg" alt="askme"></a>
+  <br>
+
+</p>
+
 ## Introduction  
 [Awesome Wm](https://awesomewm.org/) configuration  , inspired [Everfree-TEC-design](https://www.behance.net/gallery/79573713/Everfree-TEC-design) . This configuration is compatible with awesome WM 4. 
 

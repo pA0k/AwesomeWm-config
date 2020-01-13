@@ -18,7 +18,7 @@ function env:init(args)
     --init vars
     args = args or {}
     -- env vars
-    self.term       = "urxvt"
+    self.term       = "alacritty" or "st"
     self.mod        = args.mod or "Mod4"
     self.alt        = "Mod1"
     self.home       = os.getenv("HOME")

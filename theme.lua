@@ -24,7 +24,7 @@ theme.wibar   = {
 		bottom = 35
 }
 
-theme.useless_gap                   = 6
+theme.useless_gap                   = 8
 theme.border_width					= 0
 theme.font          				= "Roboto condensed 10"
 theme.fg_normal						= theme.color.white

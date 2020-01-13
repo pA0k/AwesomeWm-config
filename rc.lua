@@ -140,5 +140,5 @@ client.connect_signal("mouse::enter", function(c)
 end)
 
 
-client.connect_signal("request::titlebars", function(c) widg.smartborders.set(c, true) end)
-client.connect_signal("property::size", widg.smartborders.set)
+--client.connect_signal("request::titlebars", function(c) widg.smartborders.set(c, true) end)
+--client.connect_signal("property::size", widg.smartborders.set)

@@ -232,9 +232,6 @@ keys.clientkeys = gears.table.join(
     awful.key({ env.mod,           }, "f",
         function (c)
             c.fullscreen = not c.fullscreen
-            if c.fullscreen == false then
-                widgets.smartborders.set(c, true)
-            end
             c:raise()
         end,{description = "toggle fullscreen", group = "client"}),
 
@@ -255,9 +252,6 @@ keys.clientkeys = gears.table.join(
     awful.key({ env.mod }, "m",
         function (c)
             c.maximized = not c.maximized
-            if c.maximized == false then
-                widgets.smartborders.set(c, true)
-            end
             c:raise()
         end , {description = "(un)maximize horizontally", group = "client"}),
 

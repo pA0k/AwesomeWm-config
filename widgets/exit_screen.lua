@@ -6,6 +6,8 @@ local util        = require("utilities")
 
 local exit_screen     = { }
 
+local exit_screen_grabber
+
 -- functions
 function exit_screen.quit()
     awesome.quit()
@@ -16,9 +18,23 @@ function exit_screen.hide()
 end
 
 function exit_screen.show()
-    exit_screen.widg.visible = true
-    -- run keygrabber
-
+  -- run keygrabber
+  exit_screen_grabber =
+    awful.keygrabber.run(
+    function(_, key, event)
+      if event == 'release' then
+        return
+      end
+      if key == 'o' or key == 'y' then
+        exit_screen.quit()
+      elseif key == 'Escape' or key == 'q' or key == 'x' then
+        exit_screen.hide()
+      else 
+        awful.keygrabber.stop(exit_screen_grabber)
+      end
+    end
+  )
+  exit_screen.widg.visible = true
 end
 
 local height_exitscreen      = screen[mouse.screen].geometry.height/2.8

@@ -31,11 +31,21 @@ awful.rules.rules = {
 		},
     { 
       rule_any = { 
-        class = { "MPlayer","Mpv"},
+        class = { "MPlayer","Mpv","Alacritty","Subl3"},
         role  = { "AlarmWindow", "pop-up" },
         type  = { "dialog" }
       },
-      properties = { floating = true , border_width = 0 , titlebars_enabled = false } 
+      properties = 
+      { 
+        floating = true , 
+        border_width = 0 , 
+        placement = awful.placement.centered , 
+        titlebars_enabled = false 
+      } 
+    },
+    {
+      rule = { instance = "Xephyr" },
+      properties = { fullscreen = true }
     },
     -- Jetbrains splash screen fix
 		{

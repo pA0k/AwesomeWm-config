@@ -23,6 +23,7 @@ local widg          =   require("widgets")
 local env           =   require("environment")
 env:init()
 require("core.rules")
+require("core.notification")
 
 -- Layouts
 local layout        =   core.layouts
@@ -140,5 +141,4 @@ client.connect_signal("mouse::enter", function(c)
 end)
 
 
---client.connect_signal("request::titlebars", function(c) widg.smartborders.set(c, true) end)
---client.connect_signal("property::size", widg.smartborders.set)
+

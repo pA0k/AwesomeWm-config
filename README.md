@@ -63,9 +63,9 @@
 + `MOD4 + s` - toggle sticky client
 + `Print` - take screenshot
 + `MOD4 + Print` - to select area and screenshot
++ `ALT_LEFT + Tab` - client switcher
 
 ## wishlist
-
 - [x]  exit screen
 
 - [ ] customize notification
@@ -74,7 +74,6 @@
 
 
 ## Want to help?
-
 contribute some code, or improve documentation ? always open .
 This config could be even better with your help.
 

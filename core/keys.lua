@@ -42,15 +42,14 @@ keys.globalkeys = gears.table.join(-- change layout
         { description = "quit awesome", group = "awesome" }),
 
     -- client switcher
-    awful.key({ "Mod1", }, "Tab",
+    awful.key({ env.mod, }, "Tab",
         function()
-            switcher.switch(1, "Alt_L", "Tab", "ISO_Left_Tab")
-        end),
-
-    awful.key({ "Mod1", "Shift" }, "Tab",
-        function()
-            switcher.switch(-1, "Alt_L", "Tab", "ISO_Left_Tab")
-        end),
+            awful.client.focus.history.previous()
+            if client.focus then
+                client.focus:raise()
+            end
+        end,
+        { description = "go back", group = "client" }),
 
     -- lock screen
     awful.key({ env.mod }, "l", function() awful.util.spawn("light-locker-command -l", false) end),

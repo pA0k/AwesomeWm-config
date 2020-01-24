@@ -18,6 +18,13 @@ function exit_screen.hide()
 end
 
 function exit_screen.show()
+
+  if not _G.dont_disturb then
+    -- Add Sound fx to notif
+    -- Depends: libcanberra
+    awful.spawn('canberra-gtk-play -i window-attention', false)
+  end
+
   -- run keygrabber
   exit_screen_grabber =
     awful.keygrabber.run(

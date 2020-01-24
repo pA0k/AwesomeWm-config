@@ -1,5 +1,5 @@
-local setmetatable 	= setmetatable
-local unpack 		= unpack or table.unpack
+-- LIbrary
+------------------------------------------------------------
 local awful         = require("awful")
 local wibox     	= require("wibox")
 local beautiful 	= require("beautiful")
@@ -7,11 +7,13 @@ local gears		 	= require("gears")
 local read_cmd 		= require("utilities.read")
 local progressbar   = require("utilities.progressbar")
 
-
------------------------------------------------------------------------------------------------------------------------
+-- Variable
+---------------------------------------------------------------
 local volume = { mt = {} }
+local setmetatable 	= setmetatable
 
------------------------------------------------------------------------------------------------------------------------
+-- style
+----------------------------------------------------------------
 local function default_style()
 	local style = {
 		width   = 60,
@@ -28,31 +30,36 @@ function volume.getValue()
 	return tonumber(string.format("% 3d", volume)) / 100
 end
 
-------------------------------------------------------------------------------------------------------------------
+-- Increase volume
+----------------------------------------------------
 function volume.increase()
-	local stdout = read_cmd.output("amixser set Master 10+")
+	awful.spawn('amixser set Master 10+', false)
 end
 
-------------------------------------------------------------------------------------------------------------------
+-- Decrease volume
+-----------------------------------------------
 function volume.decrease()
-	local stdout = read_cmd.output("amixser set Master 10-")
+	awful.spawn('amixser set Master 10-', false)
 end
 
------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------
 function volume.new()
-	
 	-- Initialize vars
 	--------------------------------------------------------------------------------
 	local style = default_style()
 	--------------------------------------------------------------------------------
-	local icon = wibox.widget.imagebox(beautiful.audio.on)
-	--------------------------------------------------------------------------------
-	local layout = wibox.layout.fixed.horizontal()
+
+	-- Add icon
+	----------------------------------------------
+	local icon 		= wibox.widget.imagebox(beautiful.audio.on)
+	local layout 	= wibox.layout.fixed.horizontal()
 	layout:add(icon)
-	--------------------------------------------------------------------------------
+
+	-- Draw progress bar
+	-----------------------------------------------------------
 	local dash = progressbar.volume()
 
-	local t = gears.timer({ timeout = 2 })
+	local t = gears.timer({ timeout = 1 })
 	t:connect_signal("timeout", function()
 		dash:set_value(volume.getValue())
 	end)
@@ -65,8 +72,10 @@ function volume.new()
 	return widg
 end
 
------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------
 function volume.mt:__call(...)
 	return volume.new(...)
 end
+
+
 return setmetatable(volume, volume.mt)

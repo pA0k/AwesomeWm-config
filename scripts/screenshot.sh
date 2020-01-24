@@ -10,10 +10,10 @@ if [[ "$1" = "-s" ]]; then
     notify-send 'Select area to capture.' --urgency low 
     maim -u -m 3 -s $FILENAME
     if [[ "$?" = "0" ]]; then
-        notify-send "Screenshot taken." --urgency low -i $PHOTO_ICON_PATH
+        notify-send "A screenshot has just been saved in the folder: ~/Pictures/Screenshots/" --urgency low -i $PHOTO_ICON_PATH
     fi
 else
     # Full screenshot
     maim -u -m 3 $FILENAME
-    notify-send "SYSTEM ALERT Screenshot taken." --urgency low -i $FILENAME
+    notify-send "A screenshot has just been saved in the folder: ~/Pictures/Screenshots/" --urgency low -i $FILENAME
 fi

@@ -1,5 +1,4 @@
 pcall(require, "luarocks.loader")
-
 -- Standard awesome library
 local awful         =   require("awful")
 local gears         =   require("gears")
@@ -9,7 +8,6 @@ local wibox         =   require("wibox")
 local beautiful     =   require("beautiful")
 -- notification library
 local naughty       =   require("naughty")
-
 -- Custom library
 local core          =   require("core")
 local util          =   require("utilities")

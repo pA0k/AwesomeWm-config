@@ -4,17 +4,17 @@ local theme 		= {}
 theme.wallpaper     = themes_path .. "/wallpaper/OR4EJM0.jpg"
 
 theme.color 		= {
-	bg 		  = "#252e25",
-	black     = "#161616",
-	black_gray= "#363333",
-	dark 	  = "",
-	blue	  = "#0EC3B8",
-	gray      = "#5a5b5d",
-	yellow	  = "#C0B738",
-	red       = "#D60B17",
-	green	  = "#384d30",
-	green_dark= "#091113",
-	green_light	="#C3FF10",
+	bg 		  	= "#252e25",
+	black     	= "#161616",
+	black_gray	= "#363333",
+	dark 	  	= "",
+	blue	  	= "#0EC3B8",
+	gray      	= "#5a5b5d",
+	yellow	  	= "#C0B738",
+	red       	= "#D60B17",
+	green	  	= "#384d30",
+	green_dark	= "#091113",
+	green_light	= "#C3FF10",
 	orange		= "#f68633",
 	white	  	= "#FFFFFF"
 }
@@ -78,11 +78,11 @@ theme.notification_bg				=  theme.color.bg
 theme.notification_fg				=  theme.color.white
 theme.notification_border_width		=  5
 theme.notification_border_color		=  theme.color.green
-theme.notification_icon_size 		=  65
-theme.notification_max_width        =  500
+theme.notification_icon_size 		=  30
+theme.notification_max_width        =  600
 theme.notification_max_height       =  70
 theme.notification_margin			=  10
-theme.notification_padding 			=  1
+theme.notification_padding 			=  2
 
 -- titlebar
 theme.titlebar_bg 					= theme.color.bg
@@ -116,6 +116,7 @@ theme.audio 						= {
 	on								= themes_path .. "/icons/audio/on.svg",
 	mute							= themes_path .. "/icons/audio/mute.svg"
 }
+
 -- individual margins for panel widgets
 --------------------------------------------------------------------------------
 theme.wrapper = {

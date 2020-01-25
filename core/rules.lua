@@ -1,8 +1,11 @@
+-- Library
+--------------------------------------------------------
 local awful         =   require("awful")
 local beautiful     =   require("beautiful")
 local keys          =   require("core.keys")
 
-
+-- rules
+--------------------------------------------------------
 awful.rules.rules = {
     -- all clients
     {

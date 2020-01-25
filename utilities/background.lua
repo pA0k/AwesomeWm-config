@@ -1,27 +1,34 @@
---------        LIBRARY
-------------------------------------------------------------------------------------
-local setmetatable  = setmetatable
-local wibox         = require("wibox")
-local util          = require("utilities")
+-------- LIBRARY
+-------------------------------------------
+local setmetatable = setmetatable
+local beautiful = require("beautiful")
+local wibox = require("wibox")
+local util = require("utilities")
 
-local module        = {}
+local module = {}
 
-local function new(textbox,font_name,background,foreground)
-   local wid = wibox.widget {
+--
+-----------------------------------------------------------
+local function new(text, font_name, background, foreground)
+    local wid = wibox.widget {
         {
             {
-                text = "   "..textbox.."   ",
-                font = font_name,
+                text = text,
+                font = font_name or "roboto bold 10",
+                align = "center",
+                valign = "center",
                 widget = wibox.widget.textbox
             },
-            layout = wibox.layout.align.horizontal
+            widget = wibox.container.margin
         },
-        bg = background,
-        fg = foreground,
-        shape = util.shape.rectangle.second_style,
+        forced_width = 90,
+        bg = background or beautiful.color.orange,
+        fg = foreground or beautiful.color.black,
+        shape = util.shape.rectangle.second_style or nil,
         widget = wibox.container.background
     }
     return wid
 end
 
+------------------------------------------------------------------------------
 return setmetatable(module, { __call = function(_, ...) return new(...) end })

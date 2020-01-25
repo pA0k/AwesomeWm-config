@@ -3,7 +3,6 @@
 local awful = require('awful')
 local beautiful = require('beautiful')
 local dpi = require('beautiful').xresources.apply_dpi
-local gears = require('gears')
 local naughty = require('naughty')
 local util = require("utilities")
 local wibox = require('wibox')
@@ -21,17 +20,16 @@ naughty.connect_signal("request::display", function(n)
                 --left
                 {
                     --icon
-                    resize_strategy = 'center',
+                    resize_strategy = 'scale',
                     widget = naughty.widget.icon,
                 },
                 -- right
                 {
                     {
-                        naughty.widget.title,
-                        naughty.widget.message,
+                        widget = naughty.widget.message,
                     },
                     spacing = 2,
-                    layout = wibox.layout.fixed.vertical,
+                    layout = wibox.layout.flex.vertical,
                 },
                 fill_space = true,
                 spacing = 4,
@@ -47,8 +45,7 @@ naughty.connect_signal("request::display", function(n)
     -- Play sound
     --------------------------------------------------
     if not _G.dont_disturb then
-        -- Add Sound fx to notif
         -- Depends: libcanberra
-        awful.spawn('canberra-gtk-play -i screen-capture', false)
+        awful.spawn('canberra-gtk-play -i message', false)
     end
 end)

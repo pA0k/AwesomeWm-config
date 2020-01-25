@@ -1,9 +1,12 @@
+-- Library
+--------------------------------
 local awful = require("awful")
 local s     = mouse.screen
 
 local clients = { }
 
 -- this function returns the list of clients to be shown.
+-------------------------------------------------------------
 function clients.getAll()
 	local list = {}
 	-- Get focus history for current tag

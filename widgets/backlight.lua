@@ -1,9 +1,11 @@
-local setmetatable 	= setmetatable
-local unpack 		= unpack or table.unpack
-local wibox     	= require("wibox")
+-- Library
+--------------------------------------------
 local beautiful 	= require("beautiful")
+local setmetatable 	= setmetatable
 local gears		 	= require("gears")
+local unpack 		= unpack or table.unpack
 local util 			= require("utilities")
+local wibox     	= require("wibox")
 
 
 -----------------------------------------------------------------------------------------------------------------------

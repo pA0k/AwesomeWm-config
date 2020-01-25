@@ -22,7 +22,7 @@ function progressbar.new()
 
 	-- Initialize vars
 	--------------------------------------------------------------------------------
-	style =   {
+	local style =   {
 		column_num   = { 2, 5 },  -- {min, max}
 		row_num      = 3,
 		dot_size     = 5,

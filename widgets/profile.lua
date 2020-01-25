@@ -29,8 +29,7 @@ function profile.new()
 	--------------------------------------------------------------------------
 	local style = default_style()
 	--------------------------------------------------------------------------
-	local name = profile.getUserName() .. " 4445ddd dd" 
-	local text = util.background(name,"roboto Bold 10",beautiful.color.orange,beautiful.color.black)
+	local text = util.background(profile.getUserName())
 	--------------------------------------------------------------------------
 	local layout = wibox.layout.fixed.horizontal()
     layout:add(text)

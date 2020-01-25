@@ -1,5 +1,9 @@
+-- variables
+------------------
 local shapes = {}
 
+--
+-----------------------------------------------
 function shapes.first_style(cr, width, height)
     cr:move_to(0,0)
     cr:line_to(width,0)
@@ -9,6 +13,8 @@ function shapes.first_style(cr, width, height)
     cr:close_path()
 end
 
+-- Qt style
+-----------------------------------------------
 function shapes.second_style(cr, width, height)
     cr:move_to(height/4,0)
     cr:line_to(width,0)

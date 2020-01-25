@@ -1,19 +1,21 @@
+-- Library
+--------------------------------------------------------
 local gears = require("gears")
 local cairo = require("lgi").cairo
 local awful = require("awful")
 local wibox = require("wibox")
 
-local HIDPI = os.getenv("HIDPI") == "1"
-
-local smartBorders = {}
-
-local GUTTER = 10
-local WEIGHT = 1
+-- Variables
+--------------------------------------------------------
+local HIDPI         = os.getenv("HIDPI") == "1"
+local smartBorders  = {}
+local GUTTER        = 10
+local WEIGHT        = 1
 local STRING_OFFSET = 2
-local ARROW_WEIGHT = 5
-local ARROW_WIDTH = 50
-local SMART_GAP = 0
-local COLOR = gears.color("#091113")
+local ARROW_WEIGHT  = 5
+local ARROW_WIDTH   = 50
+local SMART_GAP     = 0
+local COLOR         = gears.color("#091113")
 
 if HIDPI then
   GUTTER = 20

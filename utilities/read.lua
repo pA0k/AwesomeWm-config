@@ -1,9 +1,12 @@
+-- library
+------------------------------------
 local io = io
 local assert = assert
 
 local read = {}
 
 -- Functions
+-----------------------------------
 function read.file(path)
 	local file = io.open(path)
 

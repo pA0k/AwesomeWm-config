@@ -78,10 +78,10 @@ theme.notification_bg				=  theme.color.bg
 theme.notification_fg				=  theme.color.white
 theme.notification_border_width		=  5
 theme.notification_border_color		=  theme.color.green
-theme.notification_icon_size 		=  30
-theme.notification_max_width        =  600
-theme.notification_max_height       =  70
-theme.notification_margin			=  10
+theme.notification_icon_size 		=  80
+theme.notification_max_width        =  500
+theme.notification_max_height       =  60
+theme.notification_margin			=  0
 theme.notification_padding 			=  2
 
 -- titlebar

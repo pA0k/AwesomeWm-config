@@ -1,5 +1,6 @@
+-- Library
+--------------------------------------------------------
 local awful = require("awful")
-local beautiful = require("beautiful")
 local env = require("environment")
 local gears = require("gears")
 local menubar = require("menubar")
@@ -12,9 +13,6 @@ env:init()
 -- Initialize variables
 -------------------------------------------------
 local keys = {}
-
-
-
 
 -- global keys
 --------------------------------------------------------------------------------------
@@ -201,4 +199,6 @@ keys.clientbuttons = gears.table.join(awful.button({}, 1, function(c) client.foc
 
 root.keys(keys.globalkeys)
 
+--------------------------------------------------------
 return keys
+--------------------------------------------------------

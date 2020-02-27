@@ -47,14 +47,14 @@ theme.menubar_fg_focus 				= "#FFFFFF"
 theme.menubar_bg_focus 				= theme.color.green
 
 -- taglist
-theme.taglist_font					= "Time Won 9"
+theme.taglist_font					= "Roboto Bold 9"
 theme.taglist_bg_urgent				= theme.color.red
 theme.taglist_fg_focus 				= theme.color.white
 theme.taglist_bg_focus 				= theme.color.green
 theme.taglist_spacing				= 6
 
 -- tasklist
-theme.tasklist_font					= "Time Won 9"
+theme.tasklist_font					= "Roboto Condensed Bold 9"
 theme.tasklist_disable_icon 		= true
 theme.tasklist_plain_task_name 		= true
 theme.tasklist_fg_normal			= theme.color.white
@@ -74,15 +74,17 @@ theme.hotkeys_border_width 			= 0
 theme.hotkeys_group_margin 			= 20
 
 -- notification
+theme.notification_font				=  "Roboto Condensed Bold 8"
 theme.notification_bg				=  theme.color.bg
 theme.notification_fg				=  theme.color.white
 theme.notification_border_width		=  5
 theme.notification_border_color		=  theme.color.green
 theme.notification_icon_size 		=  80
-theme.notification_max_width        =  500
-theme.notification_max_height       =  60
-theme.notification_margin			=  0
-theme.notification_padding 			=  2
+theme.notification_max_width        =  300
+theme.notification_max_height       =  70
+theme.notification_margin			=  10
+theme.notification_padding 			=  10
+
 
 -- titlebar
 theme.titlebar_bg 					= theme.color.bg
@@ -116,6 +118,14 @@ theme.audio 						= {
 	on								= themes_path .. "/icons/audio/on.svg",
 	mute							= themes_path .. "/icons/audio/mute.svg"
 }
+
+-- exit screen
+theme.exit_screen					= {
+	icon 	= themes_path .. "/icons/others/yellow.png",
+	title 	= "Roboto Condensed Bold 30",
+	text 	= "Roboto Condensed Bold 20",
+}
+
 
 -- individual margins for panel widgets
 --------------------------------------------------------------------------------

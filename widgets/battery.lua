@@ -7,6 +7,7 @@ local unpack = unpack or table.unpack
 local beautiful = require("beautiful")
 local util = require("utilities")
 local wibox = require("wibox")
+local naughty = require("naughty")
 
 --------------------------------------------------------------------------------
 local volume = { mt = {} }
@@ -25,7 +26,7 @@ function volume.new()
     local style = { width = 150, margin = { 5, 0, 5, 5 } }
     --------------------------------------------------------------------------------
     local layout = wibox.layout.fixed.horizontal()
-    layout:add(util.background("BATTERY"))
+    layout:add(util.background("BATTERY", nil, nil, nil, 68))
     --------------------------------------------------------------------------------
     local dash = util.progressbar.horizontal()
 
@@ -33,14 +34,12 @@ function volume.new()
     t:connect_signal("timeout", function()
         local volume_value = volume.getValue()
         dash:set_value(volume_value)
-        if (volume_value <= 15) then
-        end
     end)
     t:start()
     --------------------------------------------------------------------------------
     layout:add(wibox.container.margin(dash, unpack(style.margin)))
     --------------------------------------------------------------------------------
-    return wibox.container.constraint(layout, "max", style.width)
+    return wibox.container.constraint(layout, "exact", style.width)
 end
 
 -----------------------------------------------------------------------------------------------------------------------

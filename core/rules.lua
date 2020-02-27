@@ -54,7 +54,9 @@ awful.rules.rules = {
 		{
 			rule_any = { class = { "jetbrains-%w+", "java-lang-Thread" } },
 			callback = function(jetbrains)
-				if jetbrains.skip_taskbar then jetbrains.floating = true end
+				if jetbrains.skip_taskbar then
+                    jetbrains.floating = true
+                end
 			end
 		},
     -- feh

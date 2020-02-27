@@ -9,7 +9,7 @@ local module = {}
 
 --
 -----------------------------------------------------------
-local function new(text, font_name, background, foreground)
+local function new(text, font_name, background, foreground , width)
     local wid = wibox.widget {
         {
             {
@@ -21,7 +21,7 @@ local function new(text, font_name, background, foreground)
             },
             widget = wibox.container.margin
         },
-        forced_width = 90,
+        forced_width = width or 90,
         bg = background or beautiful.color.orange,
         fg = foreground or beautiful.color.black,
         shape = util.shape.rectangle.second_style or nil,

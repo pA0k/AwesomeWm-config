@@ -12,9 +12,7 @@ local util = require("utilities")
 local widg = require("widgets")
 
 
-
-
--------- Environmen
+-------- environment
 ------------------------------------------------------------------------------------
 local env = require("environment")
 env:init()
@@ -29,17 +27,15 @@ layout:init()
 local keys = core.keys
 
 --  Textclock
-local textclock = wibox.widget.textclock("%A %d :: (#%m %B) :: %Y  %H:%M", 60)
+local textclock = widg.textclock()
 
 
 -- sysmon
 local sysmon = {
     battery = widg.battery,
     backlight = widg.backlight,
-    volume = widg.volume
+    volume = widg.volume,
 }
-
-
 
 -- systray
 local systray = wibox.widget.systray()
@@ -106,7 +102,7 @@ awful.screen.connect_for_each_screen(function(s)
         },
         {
             layout = wibox.layout.align.horizontal,
-            textclock,
+            env.wrapper(textclock, "profile"),
             separator,
             env.wrapper(systray, "systray")
         }

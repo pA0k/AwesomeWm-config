@@ -11,14 +11,18 @@ local wibox     = require("wibox")
 -------------------------------------------------------------------------
 local exit_screen           = {}
 local exit_screen_grabber   = nil
-local height_exitscreen     = screen[mouse.screen].geometry.height / 2.8
-local width_exitscreen      = screen[mouse.screen].geometry.width / 2.5
-local positionx             = (screen[mouse.screen].geometry.width - width_exitscreen) / 2
-local positiony             = (screen[mouse.screen].geometry.height - height_exitscreen) / 2
 
-local alert_icon            = wibox.widget.imagebox(beautiful.icons.alert)
-local warning_text          = util.text("WARNING SYSTEM", "Blender Pro bold  40")
-local msg_widget            = util.text("DO YOU WANT EXIT FROM THE CURRENT SESSION  ?", "Industry-Bold  22")
+local width                 = screen[mouse.screen].geometry.width
+local height                = screen[mouse.screen].geometry.height
+
+local height_exitscreen     = height / 2.8
+local width_exitscreen      = width / 2.5
+local positionx             = (width - width_exitscreen) / 2
+local positiony             = (height - height_exitscreen) / 2
+
+local alert_icon            = wibox.widget.imagebox(beautiful.exit_screen.icon)
+local warning_text          = util.text("WARNING SYSTEM", beautiful.exit_screen.title)
+local msg_widget            = util.text("DO YOU WANT TO EXIT FROM THE CURRENT SESSION  ?", beautiful.exit_screen.text)
 
 -- functions
 ------------------------------------

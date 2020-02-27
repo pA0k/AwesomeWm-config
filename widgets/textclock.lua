@@ -1,17 +1,15 @@
---------        LIBRARY
-------------------------------------------------------------------------------------
-local setmetatable  = setmetatable
-local wibox         = require("wibox")
+-------- LIBRARY
+-------------------------------------------------
+local setmetatable = setmetatable
+local wibox = require("wibox")
 
-local module        = {}
+local module = {}
 
-local function new(textbox,font_name,background,foreground)
-   local wid = wibox.widget {
+local function new(textbox, font_name, background, foreground)
+    local wid = wibox.widget {
         {
             {
-                text = "   "..textbox.."   ",
-                font = font_name,
-                widget = wibox.widget.textbox
+                widget = wibox.widget.textclock
             },
             layout = wibox.layout.align.horizontal
         },

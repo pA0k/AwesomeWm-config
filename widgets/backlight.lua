@@ -39,7 +39,7 @@ function volume.new()
 
 	layout:add(wibox.container.margin(dash, unpack(style.margin)))
 	--------------------------------------------------------------------------------
-	local widg = wibox.container.constraint(layout, "max", style.width)
+	local widg = wibox.container.constraint(layout, "exact", style.width)
 
 	return widg
 end
